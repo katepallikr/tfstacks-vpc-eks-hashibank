@@ -1,8 +1,6 @@
 identity_token "aws" {
-  audience = ["terraform-stacks-private-preview"]
+  audience = ["aws.workload.identity"]
 }
-
-
 
 identity_token "k8s" {
   audience = ["k8s.workload.identity"]
@@ -12,8 +10,8 @@ identity_token "k8s" {
 deployment "development" {
   inputs = {
     aws_identity_token = identity_token.aws.jwt
-    role_arn            = "arn:aws:iam::855831148133:role/tfstacks-role"
-    regions             = ["ap-southeast-2"]
+    role_arn            = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo"
+    regions             = ["us-east-2"]
     vpc_name = "vpc-dev2"
     vpc_cidr = "10.0.0.0/16"
 
@@ -24,9 +22,9 @@ deployment "development" {
     #EKS OIDC
     tfc_kubernetes_audience = "k8s.workload.identity"
     tfc_hostname = "https://app.terraform.io"
-    tfc_organization_name = "hashi-demos-apj"
-    eks_clusteradmin_arn = "arn:aws:iam::855831148133:role/aws_simon.lynch_test-developer"
-    eks_clusteradmin_username = "aws_simon.lynch_test-developer"
+    tfc_organization_name = "hashicorp-kranthi"
+    eks_clusteradmin_arn = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo"
+    eks_clusteradmin_username = "aws_kranthi.katepalli_test-developer"
 
     #K8S
     k8s_identity_token = identity_token.k8s.jwt
@@ -38,8 +36,8 @@ deployment "development" {
 deployment "prod" {
   inputs = {
     aws_identity_token = identity_token.aws.jwt
-    role_arn            = "arn:aws:iam::855831148133:role/tfstacks-role"
-    regions             = ["ap-southeast-2"]
+    role_arn            = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo"
+    regions             = ["us-east-1"]
     vpc_name = "vpc-prod2"
     vpc_cidr = "10.20.0.0/16"
 
@@ -50,9 +48,9 @@ deployment "prod" {
     #EKS OIDC
     tfc_kubernetes_audience = "k8s.workload.identity"
     tfc_hostname = "https://app.terraform.io"
-    tfc_organization_name = "hashi-demos-apj"
-    eks_clusteradmin_arn = "arn:aws:iam::855831148133:role/aws_simon.lynch_test-developer"
-    eks_clusteradmin_username = "aws_simon.lynch_test-developer"
+    tfc_organization_name = "hashicorp-kranthi"
+    eks_clusteradmin_arn = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo"
+    eks_clusteradmin_username = "aws_kranthi.katepalli_test-developerr"
 
     #K8S
     k8s_identity_token = identity_token.k8s.jwt
